@@ -40,3 +40,47 @@ hf auth login
 Enter your newly created Hugging Face Access Token when prompted. 
 
 ---
+
+## 🚀 Training and Evaluation
+
+Run the following commands from the repository root to train and evaluate each model:
+
+### Llama 3.1
+
+```bash
+bash scripts/run_llama31_downstream.sh
+```
+
+### Llama 3
+
+```bash
+bash scripts/run_llama3_downstream.sh
+```
+
+### Qwen 2.5
+
+```bash
+bash scripts/run_qwen25_downstream.sh
+```
+
+### Mistral
+
+```bash
+bash scripts/run_mistral_downstream.sh
+```
+
+### Llama Guard Deployment and Harmfulness Scoring
+
+After collecting model responses, deploy Llama Guard and start the service in a terminal:
+
+```bash
+bash scripts/run_llama_guard.sh serve
+```
+
+Keep this terminal running and wait until the service is ready. Then, open another terminal, activate the `sldr` environment, and run the following command from the repository root to score the harmfulness of the model responses:
+
+```bash
+bash scripts/run_llama_guard.sh score
+```
+
+---
