@@ -83,4 +83,43 @@ Keep this terminal running and wait until the service is ready. Then, open anoth
 bash scripts/run_llama_guard.sh score
 ```
 
+### ⚠️ Important Reminder: Alpaca Evaluation
+
+Before running Llama 3.1 evaluation on the Alpaca dataset, configure the GPT judge's API base URL and API key in the same terminal:
+
+```bash
+export GPT_JUDGE_BASE_URL='your base url'
+export OPENAI_API_KEY='your API key'
+```
+
+Replace the placeholders with your API base URL and API key before starting the evaluation.
+
+### Additional Harmful Benchmark Evaluation
+
+After generating the corresponding downstream checkpoints, run the following command to evaluate Llama 3.1 on additional harmful benchmarks, including DirectHarm4, HarmBench, and HEx-PHI:
+
+```bash
+DATASETS="sst2" \
+POISON_RATIOS="0.1" \
+SEEDS="42" \
+VARIANTS="defended" \
+bash /root/scripts/run_llama31_harm_benchmarks.sh
+```
+
+### Zulu and IJP Jailbreak Evaluation
+
+Run the following command to evaluate Llama 3.1 against the Zulu and IJP jailbreak attacks using the corresponding downstream checkpoints:
+
+```bash
+DATASETS="sst2" \
+POISON_RATIOS="0.1" \
+TRAIN_SAMPLES="1000" \
+SEEDS="42" \
+VARIANTS="defended" \
+JAILBREAK_ATTACKS="zulu ijp" \
+bash /root/scripts/run_llama31_jailbreak.sh
+```
+
+**Note:** Model responses generated for the Zulu dataset must be translated into English before their harmfulness is evaluated using Llama Guard.
+
 ---
